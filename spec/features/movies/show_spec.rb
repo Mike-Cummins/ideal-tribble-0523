@@ -11,6 +11,7 @@ RSpec.describe 'Movies Show' do
       @actor_2 = @movie_1.actors.create!(name: 'Jackie Chan', age: 70)
       @actor_3 = @movie_1.actors.create!(name: 'Miley Cyrus', age: 30)
       @actor_4 = @movie_2.actors.create!(name: 'Anthony Anderson', age: 50)
+      @actor_5 = Actor.create!(name: 'Seth Rogan', age: 41)
     end
 
     it 'Displays the movie title, creation year, and genre' do 
@@ -34,6 +35,18 @@ RSpec.describe 'Movies Show' do
       visit "/movies/#{@movie_1.id}"
 
       expect(page).to have_content("Average Actor Age: 53.3")
+    end
+
+    it 'Has a form to add an actor to the movie' do
+      visit "/movies/#{@movie_1.id}"
+
+      expect(page).to_not have_content(@actor_5.name)
+
+      fill_in("actor_id", with: @actor_5.id)
+      click_on("Submit")
+
+      expect(current_path).to eq("/movies/#{@movie_1.id}")
+      expect(page).to have_content(@actor_5.name)
     end
   end
 end

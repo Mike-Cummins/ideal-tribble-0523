@@ -7,3 +7,9 @@
 </div>
 <% end %>
 <p>Average Actor Age: <%= @average_age %></p>
+
+<%= form_with url: "/movies/#{@movie.id}", method: :patch, local: true do |form| %>
+  <%= form.label :actor_id %>
+  <%= form.text_field :actor_id %>
+  <%= form.submit "Submit" %>
+<% end %>
