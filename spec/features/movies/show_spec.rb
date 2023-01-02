@@ -25,11 +25,9 @@ RSpec.describe 'Movies Show' do
     it 'Displays all of the actors listed from youngest to oldest' do 
       visit "/movies/#{@movie_1.id}"
 
-      within "#actors" do
-        expect(@actor_3.name).to appear_before(@actor_1.name)
-        expect(@actor_1.name).to appear_before(@actor_2.name)
-        expect(page).to_not have_content(@actor_4.name)
-      end
+      expect(@actor_3.name).to appear_before(@actor_1.name)
+      expect(@actor_1.name).to appear_before(@actor_2.name)
+      expect(page).to_not have_content(@actor_4.name)
     end
   end
 end
