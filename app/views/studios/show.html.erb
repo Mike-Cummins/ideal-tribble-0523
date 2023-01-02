@@ -1,7 +1,9 @@
 <h1><%= @studio.name %></h1>
 <p>Location: <%= @studio.location %></p>
 
+<div id="all_actors">
 <h3> All Actors:</h3>
 <% @all_actors.each do |actor| %>
   <p><%= actor.name %></p>
 <% end %>
+</div>
